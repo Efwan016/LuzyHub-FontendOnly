@@ -11,7 +11,7 @@ export function useTrending() {
     const fetchTrending = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("/api/api.php?action=trending"); // pake proxy di vite.config.ts
+        const res = await axios.get("/api/trending"); // pake proxy di vite.config.ts
         if (res.data.success) {
           setData(res.data.items);
         } else {
