@@ -1,13 +1,15 @@
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { type Movie } from "../types/Movie";
 import MovieCard from "./MovieCard";
 
 interface MovieCarouselProps {
   title: string;
   movies: Movie[];
+  seeAllLink?: string;
 }
 
-export default function MovieCarousel({ title, movies }: MovieCarouselProps) {
+export default function MovieCarousel({ title, movies, seeAllLink }: MovieCarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
@@ -50,7 +52,14 @@ export default function MovieCarousel({ title, movies }: MovieCarouselProps) {
 
   return (
     <section>
-      <h2 className="mb-4 px-6 text-2xl font-semibold md:px-16">{title}</h2>
+      <div className="flex items-center justify-between mb-4 px-6 md:px-16">
+        <h2 className="text-2xl font-semibold">{title}</h2>
+        {seeAllLink && (
+          <Link to={seeAllLink} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+            See All
+          </Link>
+        )}
+      </div>
       <div className="group relative">
         {showLeftArrow && (
           <button onClick={() => scroll("left")} className="absolute left-0 top-0 bottom-0 z-20 -mb-4 flex w-16 items-center justify-center bg-gradient-to-r from-black to-transparent opacity-0 transition-opacity group-hover:opacity-100" aria-label="Scroll left">

@@ -12,7 +12,7 @@ export function useTrending() {
     const fetchTrending = async () => {
       try {
         setLoading(true);
-        const res = await api.getTrending(); // langsung panggil helper
+        const res = await api.getTrending();
 
         if (res.success) {
           setData(res.items);

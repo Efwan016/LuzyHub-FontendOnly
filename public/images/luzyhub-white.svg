@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="80" viewBox="0 0 300 80">
+  <style>
+    text {
+      font-family: 'Arial Black', 'Helvetica Neue Black', sans-serif;
+      font-weight: 900;
+      font-size: 60px;
+    }
+  </style>
+
+  <text x="10" y="60" fill="white">Luzy</text>
+
+  <rect x="165" y="10" width="125" height="65" rx="10" ry="10" fill="#ff9900"/>
+
+  <text x="175" y="60" fill="black">Hub</text>
+</svg>

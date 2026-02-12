@@ -1,16 +1,31 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTrending } from "../hooks/useTrending";
+import { api } from "../services/api";
+import type { Movie } from "../types/Movie";
 import MovieCarousel from "../component/MovieCarousel";
 import Authenticated from "../layout/Autenticated";
+import Head from "../component/Head";
 
 export default function Home() {
   const { data: movies, loading, error } = useTrending();
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [kdrama, setKdrama] = useState<Movie[]>([]);
+  const [anime, setAnime] = useState<Movie[]>([]);
+  const [indonesiaMovies, setIndonesiaMovies] = useState<Movie[]>([]);
+
+
 
   const featured = useMemo(() => movies.slice(0, 5), [movies]);
   const trendingNow = useMemo(() => movies.slice(5, 15), [movies]);
-  const topRated = useMemo(() => movies.slice(15, 25), [movies]);
+
+  useEffect(() => {
+    api.getKDrama().then((res) => setKdrama(res.items || [])).catch(console.error);
+    api.getAnime().then((res) => setAnime(res.items || [])).catch(console.error);
+    api.getIndonesianMovies().then((res) => setIndonesiaMovies(res.items || [])).catch(console.error);
+    
+  }, []);
+  
 
   useEffect(() => {
     if (!featured.length) return;
@@ -25,6 +40,7 @@ export default function Home() {
   if (loading)
     return (
       <Authenticated>
+        <Head title="Luzy Home" />  
         <div className="-m-4 sm:-m-6 lg:-m-8 min-h-screen bg-[#141414] text-white overflow-x-hidden">
           {/* Hero Skeleton */}
           <div className="relative w-full h-[55vh] sm:h-[65vh] lg:h-[80vh] min-h-[500px] bg-[#1f1f1f] animate-pulse">
@@ -40,7 +56,7 @@ export default function Home() {
                 <div className="flex gap-3">
                   <div className="h-12 w-32 bg-[#2f2f2f] rounded" />
                   <div className="h-12 w-32 bg-[#2f2f2f] rounded" />
-                </div>
+                </div>gi
               </div>
             </div>
           </div>
@@ -182,7 +198,9 @@ export default function Home() {
         {/* Movie Rows - Overlapping the hero slightly */}
         <div className="relative z-20 -mt-4 lg:-mt-10 space-y-10 pb-10">
           <MovieCarousel title="Trending Now" movies={trendingNow} />
-          <MovieCarousel title="Top Rated" movies={topRated} />
+          <MovieCarousel title="K-Drama" movies={kdrama} seeAllLink="/category/kdrama" />
+          <MovieCarousel title="Anime" movies={anime} seeAllLink="/category/anime" />
+          <MovieCarousel title="Indonesian Movies" movies={indonesiaMovies} seeAllLink="/category/indonesia-movies" />
         </div>
       </div>
     </Authenticated>

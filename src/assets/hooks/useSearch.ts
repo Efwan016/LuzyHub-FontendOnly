@@ -1,34 +1,24 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { api } from "../services/api";
-import { type Movie } from "../types/Movie";
+import type { Movie } from "../types/Movie";
 
-type UseSearchReturn = {
-  results: Movie[];
-  loading: boolean;
-  error: string | null;
-  search: (query: string) => Promise<void>;
-};
-
-export function useSearch(): UseSearchReturn {
+export function useSearch() {
   const [results, setResults] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const search = async (query: string) => {
-    if (!query) return;
-
-    setLoading(true);
-    setError(null);
-
+  const search = useCallback(async (query: string) => {
     try {
+      setLoading(true);
+      setError(null);
       const res = await api.search(query);
       setResults(res.items || []);
     } catch {
-      setError("Search failed");
+      setError("Failed to search movies");
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   return { results, loading, error, search };
 }
