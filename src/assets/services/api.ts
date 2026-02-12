@@ -1,14 +1,6 @@
 
-import type { Movie } from "../types/Movie";
+import type { Movie, ApiResponse} from "../types/Movie";
 
-export interface ApiResponse<T> {
-  success: boolean;
-  category?: string;
-  items: T[];
-  total?: number;
-  page?: number;
-  hasMore?: boolean;
-}
 
 const BASE_URL = 'https://zeldvorik.ru/apiv3/api.php';
 
@@ -44,4 +36,5 @@ export const api = {
   getIndoDub: (page = 1) => fetchFromApi<Movie>({ action: 'indo-dub', page }),
   search: (keyword: string) => fetchFromApi<Movie>({ action: 'search', q: keyword }),
   getDetail: (detailPath: string) => fetchFromApi<Movie>({ action: 'detail', detailPath }),
+  getCategory: (category: string, page = 1) => fetchFromApi<Movie>({ action: category, page }),
 };

@@ -10,3 +10,13 @@ export type Movie = {
   description?: string;
   detailPath: string;
 };
+
+export interface ApiResponse<T> {
+  success: boolean;
+  category?: string;
+  items: T[];
+  total?: number;
+  page?: number;
+  hasMore?: boolean;
+}
+
