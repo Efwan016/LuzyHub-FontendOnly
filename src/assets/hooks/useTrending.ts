@@ -1,6 +1,7 @@
+// src/hooks/useTrending.ts
 import { useEffect, useState } from "react";
-import axios from "axios";
-import { type Movie } from "../types/Movie";
+import { api } from "../services/api"; // path ke api.ts
+import type { Movie } from "../types/Movie";
 
 export function useTrending() {
   const [data, setData] = useState<Movie[]>([]);
@@ -11,9 +12,10 @@ export function useTrending() {
     const fetchTrending = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("/api/trending"); // pake proxy di vite.config.ts
-        if (res.data.success) {
-          setData(res.data.items);
+        const res = await api.getTrending(); // langsung panggil helper
+
+        if (res.success) {
+          setData(res.items);
         } else {
           setError("Failed to fetch trending movies");
         }
