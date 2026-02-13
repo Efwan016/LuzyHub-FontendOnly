@@ -46,13 +46,14 @@ export default function Sidebar({ isSidebarOpen, isDesktopSidebarOpen = true }: 
                             </svg>
                             Anime
                         </Link>
-                        <Link to="#" className="flex items-center gap-4 text-gray-400 hover:text-white transition-all mb-0">
+                        <Link to="/category/short-tv" className="flex items-center gap-4 text-gray-400 hover:text-white transition-all mb-0">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.93 6.36l-2.14.62-.92-2.02 1.47-1.47c.78.95 1.33 2.06 1.59 3.07zm-1.9 4.86l-1.59 1.59-.92-2.44 1.9-1.1c.28.65.49 1.33.61 1.95zm-4.03 5.73c-.52-.33-.96-.76-1.28-1.28l-2.44.92 1.59 1.59c.62-.12 1.3-.33 1.95-.61zm-6.03-6.59l2.14-.62.92 2.02-1.47 1.47c-.78-.95-1.33-2.06-1.59-3.07zm1.9-4.86l1.59-1.59.92 2.44-1.9 1.1c-.28-.65-.49-1.33-.61-1.95zm4.03-5.73c.52.33.96.76 1.28 1.28l2.44-.92-1.59-1.59c-.62.12-1.3.33-1.95.61z" />
                             </svg>
-                            Live Score
+                            Short-TV
                         </Link>
+                        
 
                     </div>
                     { /* ./Menu */}

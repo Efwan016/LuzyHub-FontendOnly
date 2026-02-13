@@ -46,6 +46,7 @@ export interface ApiResponse<T> {
   items: T[];
   total?: number;
   page?: number;
+  totalPages?: number;
   hasMore?: boolean;
   data?: T;
 }

@@ -55,8 +55,9 @@ export default function MovieCarousel({ title, movies, seeAllLink }: MovieCarous
       <div className="flex items-center justify-between mb-4 px-6 md:px-16">
         <h2 className="text-2xl font-semibold">{title}</h2>
         {seeAllLink && (
-          <Link to={seeAllLink} className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+          <Link to={seeAllLink} className="flex items-center gap-1 text-sm font-medium text-gray-400 hover:text-white transition-colors group">
             See All
+            <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
           </Link>
         )}
       </div>

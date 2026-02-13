@@ -49,8 +49,6 @@ export default function MovieDetail() {
         // Ambil detail movie
         const res = await api.getDetail(slug);
         const data = res.data ?? null;
-        console.log(res);
-
 
         if (!data) {
           setError("Movie Not Found");

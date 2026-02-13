@@ -8,13 +8,20 @@ export function useSearch() {
   const [error, setError] = useState<string | null>(null);
 
   const search = useCallback(async (query: string) => {
+    if (!query.trim()) {
+      setResults([]);
+      return;
+    }
+
     try {
       setLoading(true);
       setError(null);
+
       const res = await api.search(query);
-      setResults(res.items || []);
-    } catch {
+      setResults(res.items ?? []);
+    } catch  {
       setError("Failed to search movies");
+      setResults([]);
     } finally {
       setLoading(false);
     }
