@@ -10,11 +10,15 @@ import Head from "../component/Head";
 export default function Home() {
   const { data: movies, loading, error } = useTrending();
   const [currentIndex, setCurrentIndex] = useState(0);
+
   const [kdrama, setKdrama] = useState<Movie[]>([]);
   const [anime, setAnime] = useState<Movie[]>([]);
   const [indonesiaMovies, setIndonesiaMovies] = useState<Movie[]>([]);
-  const [shortTv, setShortTv] = useState<Movie[]>([]);
   const [indonesianDrama, setIndonesianDrama] = useState<Movie[]>([]);
+  const [indoDub, setIndoDub] = useState<Movie[]>([]);
+  const [shortTv, setShortTv] = useState<Movie[]>([]);
+  const [westernTv, setWesternTv] = useState<Movie[]>([]);
+  const [adultComedy, setAdultComedy] = useState<Movie[]>([]);
 
 
 
@@ -28,6 +32,9 @@ export default function Home() {
     api.getIndonesianMovies().then((res) => setIndonesiaMovies(res.items || [])).catch(console.error);
     api.getShortTV().then((res) => setShortTv(res.items || [])).catch(console.error);
     api.getIndonesianDrama().then((res) => setIndonesianDrama(res.items || [])).catch(console.error);
+    api.getWesternTV().then((res) => setWesternTv(res.items || [])).catch(console.error);
+    api.getIndoDub().then((res) => setIndoDub(res.items || [])).catch(console.error);
+    api.getAdultComedy().then((res) => setAdultComedy(res.items || [])).catch(console.error);
   }, []);
 
 
@@ -232,6 +239,9 @@ export default function Home() {
           <MovieCarousel title="Short TV" movies={shortTv} seeAllLink="/category/short-tv" />
           <MovieCarousel title="Indonesian Movies" movies={indonesiaMovies} seeAllLink="/category/indonesian-movies" />
           <MovieCarousel title="Indonesian Drama" movies={indonesianDrama} seeAllLink="/category/indonesian-drama" />
+          <MovieCarousel title="Western TV" movies={westernTv} seeAllLink="/category/western-tv" />
+          <MovieCarousel title="Adult Comedy" movies={adultComedy} seeAllLink="/category/adult-comedy" />
+          <MovieCarousel title="Indo Dub" movies={indoDub} seeAllLink="/category/indo-dub" />
         </div>
       </div>
     </Authenticated>
