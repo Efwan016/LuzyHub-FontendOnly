@@ -43,11 +43,6 @@ export default function Authenticated({ children }: AuthenticatedProps) {
             {/* Main Content Wrapper */}
             <div 
                 className={`transition-all duration-300 ease-in-out ${isDesktopSidebarOpen ? 'lg:ml-[300px]' : 'lg:ml-0'}`}
-                onClick={() => {
-                    if (window.innerWidth >= 1024 && isDesktopSidebarOpen) {
-                        setIsDesktopSidebarOpen(false);
-                    }
-                }}
             >
                 
                 {/* Sticky Header */}
