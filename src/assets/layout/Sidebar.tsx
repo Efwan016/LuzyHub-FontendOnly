@@ -67,7 +67,7 @@ export default function Sidebar({ isSidebarOpen, isDesktopSidebarOpen = true }: 
                 <div className="h-24 flex items-center px-8">
                     <Link to="/" className="flex items-center gap-3 transition-transform duration-300 hover:scale-105">
                         <img
-                            src="./images/luzyhub-white.svg"
+                            src="/images/luzyhub-white.svg"
                             alt="LuzyHub"
                             className="h-10 w-auto object-contain"
                         />

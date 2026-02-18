@@ -38,7 +38,7 @@ export default function TopBar({
       <div className="flex items-center gap-4">
 
         <button
-          className={`text-white focus:outline-none ${isSidebarOpen ? 'hidden' : ''} ${isDesktopSidebarOpen ? 'lg:hidden' : ''}`}
+          className="text-white focus:outline-none"
           onClick={toggleSidebar}
         >
           ☰
