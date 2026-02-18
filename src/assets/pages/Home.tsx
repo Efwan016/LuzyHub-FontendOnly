@@ -15,7 +15,6 @@ export default function Home() {
   const [anime, setAnime] = useState<Movie[]>([]);
   const [indonesiaMovies, setIndonesiaMovies] = useState<Movie[]>([]);
   const [indonesianDrama, setIndonesianDrama] = useState<Movie[]>([]);
-  const [indoDub, setIndoDub] = useState<Movie[]>([]);
   const [shortTv, setShortTv] = useState<Movie[]>([]);
   const [westernTv, setWesternTv] = useState<Movie[]>([]);
   const [adultComedy, setAdultComedy] = useState<Movie[]>([]);
@@ -27,13 +26,14 @@ export default function Home() {
   const trendingNow = useMemo(() => movies.slice(5, 15), [movies]);
 
   useEffect(() => {
+    api.getIndonesianMovies().then((res) => setIndonesiaMovies(res.items || [])).catch(console.error);
+    api.getIndonesianDrama().then((res) => setIndonesianDrama(res.items || [])).catch(console.error);
+
+    api.getShortTV().then((res) => setShortTv(res.items || [])).catch(console.error);
     api.getKDrama().then((res) => setKdrama(res.items || [])).catch(console.error);
     api.getAnime().then((res) => setAnime(res.items || [])).catch(console.error);
-    api.getIndonesianMovies().then((res) => setIndonesiaMovies(res.items || [])).catch(console.error);
-    api.getShortTV().then((res) => setShortTv(res.items || [])).catch(console.error);
-    api.getIndonesianDrama().then((res) => setIndonesianDrama(res.items || [])).catch(console.error);
+    
     api.getWesternTV().then((res) => setWesternTv(res.items || [])).catch(console.error);
-    api.getIndoDub().then((res) => setIndoDub(res.items || [])).catch(console.error);
     api.getAdultComedy().then((res) => setAdultComedy(res.items || [])).catch(console.error);
   }, []);
 
@@ -241,7 +241,6 @@ export default function Home() {
           <MovieCarousel title="Indonesian Drama" movies={indonesianDrama} seeAllLink="/category/indonesian-drama" />
           <MovieCarousel title="Western TV" movies={westernTv} seeAllLink="/category/western-tv" />
           <MovieCarousel title="Adult Comedy" movies={adultComedy} seeAllLink="/category/adult-comedy" />
-          <MovieCarousel title="Indo Dub" movies={indoDub} seeAllLink="/category/indo-dub" />
         </div>
       </div>
     </Authenticated>

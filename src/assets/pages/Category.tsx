@@ -10,17 +10,19 @@ export default function Category() {
   const { slug } = useParams();
 
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [hasMore, setHasMore] = useState(false);
 
-  // Reset page when slug changes
+
   useEffect(() => {
+    setMovies([]);
     setCurrentPage(1);
+    setHasMore(false);
   }, [slug]);
 
-  // Fetch category based on slug + page
+
   useEffect(() => {
     if (!slug) return;
 
@@ -30,9 +32,14 @@ export default function Category() {
         setError(null);
 
         const res = await api.getCategory(slug, currentPage);
+        const newItems = res.items || [];
 
-        setMovies(res.items || res.data || []);
-        setTotalPages(res.totalPages || 1);
+        if (currentPage === 1) {
+          setMovies(newItems);
+        } else {
+          setMovies((prev) => [...prev, ...newItems]);
+        }
+        setHasMore (res.hasMore || false);
       } catch {
         setError("Failed to load category");
       } finally {
@@ -43,38 +50,14 @@ export default function Category() {
     fetchCategory();
   }, [slug, currentPage]);
 
-  // Scroll to top when page changes
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [currentPage]);
+
+
 
   // Format title
   const title = slug
     ? slug.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())
     : "Category";
 
-  // Professional pagination generator
-  const getPagination = () => {
-    const pages: (number | string)[] = [];
-    const start = Math.max(currentPage - 2, 1);
-    const end = Math.min(currentPage + 2, totalPages);
-
-    if (start > 1) {
-      pages.push(1);
-      if (start > 2) pages.push("...");
-    }
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
-    }
-
-    if (end < totalPages) {
-      if (end < totalPages - 1) pages.push("...");
-      pages.push(totalPages);
-    }
-
-    return pages;
-  };
 
   return (
     <Authenticated>
@@ -109,56 +92,30 @@ export default function Category() {
         {movies.length > 0 && (
           <>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-10">
-              {movies.map((movie, idx) => (
-                <MovieCard key={idx} movie={movie} />
+              {movies.map((movie) => (
+                <MovieCard key={movie.id} movie={movie} />
               ))}
             </div>
 
-            {totalPages > 1 && (
+            {hasMore && (
               <div className="flex gap-2 mt-6 justify-center items-center flex-wrap">
                 {/* Prev Button */}
                 <button
-                  disabled={currentPage === 1}
-                  onClick={() =>
-                    setCurrentPage((prev) => Math.max(prev - 1, 1))
-                  }
-                  className="px-3 py-1 rounded bg-gray-700 text-gray-300 disabled:opacity-40"
-                >
-                  Prev
-                </button>
-
-                {getPagination().map((p, i) =>
-                  p === "..." ? (
-                    <span key={i} className="px-2 text-gray-400">
-                      ...
-                    </span>
-                  ) : (
-                    <button
-                      key={p}
-                      onClick={() => setCurrentPage(p as number)}
-                      className={`px-3 py-1 rounded ${
-                        currentPage === p
-                          ? "bg-red-500 text-white"
-                          : "bg-gray-700 text-gray-300"
-                      }`}
-                    >
-                      {p}
-                    </button>
-                  )
-                )}
-
-                {/* Next Button */}
-                <button
-                  disabled={currentPage === totalPages}
+                  disabled={loading}
                   onClick={() =>
                     setCurrentPage((prev) =>
-                      Math.min(prev + 1, totalPages)
+                      prev + 1
                     )
                   }
-                  className="px-3 py-1 rounded bg-gray-700 text-gray-300 disabled:opacity-40"
+                  className="px-6 py-2 rounded-full bg-red-600 text-white hover:bg-red-400 transition-colors disabled:opacity-50"
                 >
-                  Next
+                  {loading ? "Loading..." : "Load More"}
                 </button>
+
+
+
+                {/* Next Button */}
+                
               </div>
             )}
           </>
