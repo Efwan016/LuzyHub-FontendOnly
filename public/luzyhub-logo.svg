@@ -1,33 +1,43 @@
-<!-- Logo Text -->
-<g filter="url(#shadow)">
+<svg viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
 
-  <!-- White Outer Stroke -->
-  <text x="50%" y="50%" 
-    text-anchor="middle"
-    dominant-baseline="middle"
-    font-family="Brush Script MT, cursive"
-    font-size="160"
-    font-weight="bold"
-    fill="none"
-    stroke="white"
-    stroke-width="16"
-    stroke-linejoin="round">
-    LuzyHub
-  </text>
+  <defs>
+    <linearGradient id="redGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff0000"/>
+      <stop offset="100%" stop-color="#990000"/>
+    </linearGradient>
 
-  <!-- Red Gradient Fill + Inner Stroke -->
-  <text x="50%" y="50%" 
-    text-anchor="middle"
-    dominant-baseline="middle"
-    font-family="Brush Script MT, cursive"
-    font-size="160"
-    font-weight="bold"
-    fill="url(#redGradient)"
-    stroke="#990000"
-    stroke-width="6"
-    letter-spacing="2">
-    LuzyHub
-  </text>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
 
-</g>
+  <g filter="url(#shadow)">
 
+    <text x="50%" y="50%"
+      text-anchor="middle"
+      dominant-baseline="central"
+      font-family="Brush Script MT, cursive"
+      font-size="160"
+      font-weight="bold"
+      fill="none"
+      stroke="white"
+      stroke-width="16"
+      stroke-linejoin="round">
+      LuzyHub
+    </text>
+
+    <text x="50%" y="50%"
+      text-anchor="middle"
+      dominant-baseline="central"
+      font-family="Brush Script MT, cursive"
+      font-size="160"
+      font-weight="bold"
+      fill="url(#redGradient)"
+      stroke="#990000"
+      stroke-width="6">
+      LuzyHub
+    </text>
+
+  </g>
+
+</svg>
