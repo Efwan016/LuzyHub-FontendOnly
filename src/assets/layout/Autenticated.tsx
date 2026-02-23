@@ -1,4 +1,5 @@
 import { useState, useEffect, type ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import Sidebar from "./Sidebar";
 import TopBar from "./Topbar";
 
@@ -61,6 +62,7 @@ export default function Authenticated({ children }: AuthenticatedProps) {
                     </main>
                 </div>
             </div>
+            <Analytics />
         </div>
     );
 }
