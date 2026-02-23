@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://zeldvorik.ru/apiv3",
+        target: "https://foodcash.com.br/sistema/apiv4",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
       },

@@ -2,7 +2,7 @@
 import type { Movie, ApiResponse} from "../types/Movie";
 
 
-const BASE_URL = 'https://zeldvorik.ru/apiv3/api.php';
+const BASE_URL = 'https://foodcash.com.br/sistema/apiv4/api.php';
 
 type FetchParams = Record<string, string | number>;
 

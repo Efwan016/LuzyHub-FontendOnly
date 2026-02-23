@@ -241,6 +241,7 @@ export default function Home() {
           <MovieCarousel title="Indonesian Drama" movies={indonesianDrama} seeAllLink="/category/indonesian-drama" />
           <MovieCarousel title="Western TV" movies={westernTv} seeAllLink="/category/western-tv" />
           <MovieCarousel title="Adult Comedy" movies={adultComedy} seeAllLink="/category/adult-comedy" />
+          <MovieCarousel title="Dracin" movies={[]} seeAllLink="/category/popular" /> {/* Placeholder for new API category */}
         </div>
       </div>
     </Authenticated>

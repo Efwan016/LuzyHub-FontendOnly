@@ -3,14 +3,10 @@ import { useMemo, useState } from "react";
 
 interface TopBarProps {
   toggleSidebar: () => void;
-  isSidebarOpen: boolean;
-  isDesktopSidebarOpen: boolean;
 }
 
 export default function TopBar({
   toggleSidebar,
-  isSidebarOpen,
-  isDesktopSidebarOpen,
 }: TopBarProps) {
 
   const navigate = useNavigate();

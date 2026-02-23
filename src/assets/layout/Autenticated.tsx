@@ -51,7 +51,7 @@ export default function Authenticated({ children }: AuthenticatedProps) {
                         isScrolled ? 'bg-[#141414]/90 backdrop-blur-md shadow-md border-b border-white/5' : 'bg-transparent'
                     }`}
                 >
-                    <TopBar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} isDesktopSidebarOpen={isDesktopSidebarOpen} />
+                    <TopBar toggleSidebar={toggleSidebar} />
                 </header>
 
                 {/* Page Content */}
