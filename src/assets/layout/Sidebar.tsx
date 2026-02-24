@@ -3,9 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 interface SidebarProps {
     isSidebarOpen: boolean;
     isDesktopSidebarOpen?: boolean;
+    closeMobileSidebar: () => void;
 }
 
-export default function Sidebar({ isSidebarOpen, isDesktopSidebarOpen = true }: SidebarProps) {
+export default function Sidebar({ isSidebarOpen, isDesktopSidebarOpen = true, closeMobileSidebar }: SidebarProps) {
     const location = useLocation();
 
     const menuItems = [
@@ -88,6 +89,7 @@ export default function Sidebar({ isSidebarOpen, isDesktopSidebarOpen = true }: 
                                     <Link
                                         key={item.name}
                                         to={item.path}
+                                        onClick={closeMobileSidebar}
                                         className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group ${
                                             active 
                                                 ? "bg-red-600 text-white shadow-lg shadow-red-600/20 font-semibold" 

@@ -93,6 +93,7 @@ export default function MovieDetail() {
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
       />
+      
 
       <Episodes
         movie={movie}

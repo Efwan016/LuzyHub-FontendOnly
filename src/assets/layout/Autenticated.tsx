@@ -2,6 +2,7 @@ import { useState, useEffect, type ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import Sidebar from "./Sidebar";
 import TopBar from "./Topbar";
+import Footer from "./Footer";
 
 interface AuthenticatedProps {
     children: ReactNode;
@@ -20,6 +21,8 @@ export default function Authenticated({ children }: AuthenticatedProps) {
         }
     };
 
+    const closeMobileSidebar = () => setIsSidebarOpen(false);
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 0);
@@ -32,18 +35,18 @@ export default function Authenticated({ children }: AuthenticatedProps) {
     return (
         <div className="w-full min-h-screen bg-[#141414] text-white font-sans selection:bg-[#E50914] selection:text-white">
             {/* Sidebar */}
-            <Sidebar isSidebarOpen={isSidebarOpen} isDesktopSidebarOpen={isDesktopSidebarOpen} />
+            <Sidebar isSidebarOpen={isSidebarOpen} isDesktopSidebarOpen={isDesktopSidebarOpen} closeMobileSidebar={closeMobileSidebar} />
 
             {/* Mobile Overlay */}
             <div
                 className={`fixed inset-0 z-40 bg-black/70 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
                     }`}
-                onClick={() => setIsSidebarOpen(false)}
+                onClick={closeMobileSidebar}
             />
 
             {/* Main Content Wrapper */}
             <div 
-                className={`transition-all duration-300 ease-in-out ${isDesktopSidebarOpen ? 'lg:ml-[300px]' : 'lg:ml-0'}`}
+                className={`flex flex-col min-h-screen transition-all duration-300 ease-in-out ${isDesktopSidebarOpen ? 'lg:ml-[300px]' : 'lg:ml-0'}`}
             >
                 
                 {/* Sticky Header */}
@@ -56,11 +59,12 @@ export default function Authenticated({ children }: AuthenticatedProps) {
                 </header>
 
                 {/* Page Content */}
-                <div className="p-4 sm:p-6 lg:p-8 flex flex-col gap-8 min-h-[calc(100vh-88px)]">
-                    <main className="flex flex-col gap-6">
+                <div className="flex-1 p-4 sm:p-6 lg:p-8 flex flex-col gap-8">
+                    <main className="flex flex-col gap-6 w-full">
                         {children}
                     </main>
                 </div>
+                <Footer />
             </div>
             <Analytics />
         </div>

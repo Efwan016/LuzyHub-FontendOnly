@@ -11,7 +11,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
             src={movie.poster}
             alt={movie.title}
             loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="h-full w-full object-cover transition-transform duration-600 ease-in-out group-hover:scale-110"
           />
           
           {/* Gradient Overlay */}

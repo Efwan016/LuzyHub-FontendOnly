@@ -52,7 +52,7 @@ export default function Home() {
     return (
       <Authenticated>
         <Head title="Luzy Home" />
-        <div className="-m-4 sm:-m-6 lg:-m-8 min-h-screen bg-[#141414] text-white overflow-x-hidden pb-20">
+        <div className="-mt-4 -mx-4 sm:-mt-6 sm:-mx-6 lg:-mt-8 lg:-mx-8 min-h-screen bg-[#141414] text-white overflow-x-hidden pb-20">
           {/* Hero Skeleton */}
           <div className="relative w-full h-[85vh] bg-[#0a0a0a] animate-pulse">
             <div className="absolute inset-0 flex items-center">
@@ -102,7 +102,7 @@ export default function Home() {
   return (
     <Authenticated>
       {/* Negative margins to break out of the Authenticated layout padding for full-width effect */}
-      <div className="-m-4 sm:-m-6 lg:-m-8 min-h-screen bg-[#141414] text-white overflow-x-hidden pb-20">
+      <div className="-mt-4 -mx-4 sm:-mt-6 sm:-mx-6 lg:-mt-8 lg:-mx-8 min-h-screen bg-[#141414] text-white overflow-x-hidden pb-20">
         <style>{`
         .scrollbar-hide::-webkit-scrollbar {
             display: none;
@@ -232,7 +232,7 @@ export default function Home() {
         )}
 
         {/* Movie Rows - Overlapping the hero slightly */}
-        <div className="relative z-20 -mt-24 lg:-mt-32 space-y-12 px-4 sm:px-8 bg-gradient-to-b from-transparent via-[#141414] to-[#141414] pt-10">
+        <div className="relative z-20 -mt-10 lg:-mt-16 space-y-12 px-4 sm:px-8 bg-gradient-to-b from-transparent via-[#141414] to-[#141414] pt-10">
           <MovieCarousel title="Trending Now" movies={trendingNow} />
           <MovieCarousel title="K-Drama" movies={kdrama} seeAllLink="/category/kdrama" />
           <MovieCarousel title="Anime" movies={anime} seeAllLink="/category/anime" />
