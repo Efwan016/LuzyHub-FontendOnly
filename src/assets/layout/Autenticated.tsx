@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Sidebar from "./Sidebar";
 import TopBar from "./Topbar";
 import Footer from "./Footer";
+import SplashCursor from "./css/SpalshCursor";
 
 interface AuthenticatedProps {
     children: ReactNode;
@@ -45,15 +46,14 @@ export default function Authenticated({ children }: AuthenticatedProps) {
             />
 
             {/* Main Content Wrapper */}
-            <div 
+            <div
                 className={`flex flex-col min-h-screen transition-all duration-300 ease-in-out ${isDesktopSidebarOpen ? 'lg:ml-[300px]' : 'lg:ml-0'}`}
             >
-                
+
                 {/* Sticky Header */}
-                <header 
-                    className={`sticky top-0 z-30 px-4 sm:px-6 lg:px-8 py-4 transition-all duration-500 ${
-                        isScrolled ? 'bg-[#141414]/90 backdrop-blur-md shadow-md border-b border-white/5' : 'bg-transparent'
-                    }`}
+                <header
+                    className={`sticky top-0 z-30 px-4 sm:px-6 lg:px-8 py-4 transition-all duration-500 ${isScrolled ? 'bg-[#141414]/90 backdrop-blur-md shadow-md border-b border-white/5' : 'bg-transparent'
+                        }`}
                 >
                     <TopBar toggleSidebar={toggleSidebar} />
                 </header>
@@ -66,6 +66,9 @@ export default function Authenticated({ children }: AuthenticatedProps) {
                 </div>
                 <Footer />
             </div>
+
+
+            <SplashCursor />
             <Analytics />
         </div>
     );
