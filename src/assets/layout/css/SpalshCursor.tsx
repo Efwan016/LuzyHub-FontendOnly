@@ -367,7 +367,7 @@ export default function SplashCursor({
       return status === gl.FRAMEBUFFER_COMPLETE;
     }
 
-const baseVertexShader = compileShader(
+    const baseVertexShader = compileShader(
       gl,
       gl.VERTEX_SHADER,
       `
