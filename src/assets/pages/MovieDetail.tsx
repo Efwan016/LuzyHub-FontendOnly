@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { api } from "../services/api"; 
+import { api } from "../services/api";
 import HeroPlayer from "../component/HeroPlayer";
 import Episodes from "../component/Episodes";
 import Recommendations from "../component/Recomendations";
@@ -19,25 +19,25 @@ export default function MovieDetail() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // Helper untuk ambil video pertama yang bisa diputar
- const getFirstPlayableVideo = (movie: Movie) => {
-  // cek seasons
-  if (movie.seasons && movie.seasons.length > 0) {
-    const firstSeason = movie.seasons[0];
-    if (firstSeason.episodes && firstSeason.episodes.length > 0) {
-      const firstEp = firstSeason.episodes[0];
-      if (firstEp.playerUrl) return firstEp.playerUrl;
+  const getFirstPlayableVideo = (movie: Movie) => {
+    // cek seasons
+    if (movie.seasons && movie.seasons.length > 0) {
+      const firstSeason = movie.seasons[0];
+      if (firstSeason.episodes && firstSeason.episodes.length > 0) {
+        const firstEp = firstSeason.episodes[0];
+        if (firstEp.playerUrl) return firstEp.playerUrl;
+      }
     }
-  }
 
-  // fallback ke trailer
-  if (movie.trailerUrl) return movie.trailerUrl;
+    // fallback ke trailer
+    if (movie.trailerUrl) return movie.trailerUrl;
 
-  // fallback ke playerUrl / video_url
-  if (movie.playerUrl) return movie.playerUrl;
-  if (movie.video_url) return movie.video_url;
+    // fallback ke playerUrl / video_url
+    if (movie.playerUrl) return movie.playerUrl;
+    if (movie.video_url) return movie.video_url;
 
-  return null;
-};
+    return null;
+  };
 
   useEffect(() => {
     if (!slug) return;
@@ -83,33 +83,42 @@ export default function MovieDetail() {
   if (!movie) return <div className="text-white p-4">Movie not found</div>;
 
   return (
-     <Authenticated>
-            <Head title={movie.title || movie.name || "No Title"} />
-    <div className="bg-black text-white min-h-screen pb-20">
-      <HeroPlayer
-        movie={movie}
-        currentVideoUrl={currentVideoUrl}
-        setCurrentVideoUrl={setCurrentVideoUrl}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-      />
-      
+    <Authenticated>
+      <Head title={movie.title || movie.name || "No Title"} />
+      <div className="bg-black text-white min-h-screen pb-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Wrapper for Player and Episodes list */}
+          <div className="flex flex-col lg:flex-row lg:gap-8 pt-8">
+            {/* Left side: Player */}
+            <div className="lg:w-2/3">
+              <HeroPlayer
+                movie={movie}
+                currentVideoUrl={currentVideoUrl}
+                setCurrentVideoUrl={setCurrentVideoUrl}
+                isPlaying={isPlaying}
+                setIsPlaying={setIsPlaying}
+              />
+            </div>
 
-      <Episodes
-        movie={movie}
-        currentVideoUrl={currentVideoUrl}
-        setCurrentVideoUrl={(url) => {
-          setCurrentVideoUrl(url);
-          setIsPlaying(true);
-        }}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-        activeSeason={activeSeason}
-        setActiveSeason={setActiveSeason}
-      />
-
-      <Recommendations recommendations={recommendations} />
-    </div>
-     </Authenticated>
+            {/* Right side: Episodes (desktop) / Below (mobile) */}
+            <div className="lg:w-1/3 mt-8 lg:mt-0">
+              <Episodes
+                movie={movie}
+                currentVideoUrl={currentVideoUrl}
+                setCurrentVideoUrl={(url) => {
+                  setCurrentVideoUrl(url);
+                  setIsPlaying(true);
+                }}
+                isPlaying={isPlaying}
+                setIsPlaying={setIsPlaying}
+                activeSeason={activeSeason}
+                setActiveSeason={setActiveSeason}
+              />
+            </div>
+          </div>
+        </div>
+        <Recommendations recommendations={recommendations} />
+      </div>
+    </Authenticated>
   );
 }

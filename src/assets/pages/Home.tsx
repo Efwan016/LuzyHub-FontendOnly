@@ -166,25 +166,6 @@ export default function Home() {
                         <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
                         Play Now
                       </Link>
-                      <Link
-                        to={`/movie/${encodeURIComponent(movie.detailPath)}`}
-                        className="flex items-center gap-3 bg-gray-600/40 backdrop-blur-md text-white hover:bg-white hover:text-black px-8 py-3.5 rounded-xl font-bold transition-all border border-white/10 shadow-lg"
-                      >
-                        <svg
-                          className="w-6 h-6"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                          />
-                        </svg>
-                        More Info
-                      </Link>
                     </div>
                   </div>
                 </div>

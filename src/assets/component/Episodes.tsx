@@ -44,8 +44,8 @@ export default function Episodes({ movie, currentVideoUrl, setCurrentVideoUrl, s
     };
 
     return (
-        <div className="container mx-auto px-4 sm:px-6 md:px-12 lg:px-20 -mt-10 mb-16">
-            <div className="bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8">
+        // The component is now just the list box. Positioning and margins are handled by the parent.
+        <motion.div layout className="bg-gray-900/50 backdrop-blur-xl border border-white/10 rounded-3xl p-6 md:p-8 h-full flex flex-col">
                 <div className="flex flex-col md:flex-row justify-between md:items-center mb-6 gap-4">
                     <h2 className="text-2xl lg:text-3xl font-bold text-white">Episodes</h2>
                     {(movie.seasons?.length ?? 0) > 1 && (
@@ -66,7 +66,7 @@ export default function Episodes({ movie, currentVideoUrl, setCurrentVideoUrl, s
                         </div>
                     )}
                 </div>
-                <div className="space-y-3 max-h-[60vh] md:max-h-[400px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800/50">
+                <div className="flex-grow space-y-3 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800/50 max-h-[60vh]">
                     {episodes.map((ep, idx) => {
                         const episodeUrl = ep.playerUrl || ep.video_url;
                         const isActive = episodeUrl === currentVideoUrl;
@@ -97,7 +97,6 @@ export default function Episodes({ movie, currentVideoUrl, setCurrentVideoUrl, s
                         );
                     })}
                 </div>
-            </div>
-        </div>
+        </motion.div>
     )
 }

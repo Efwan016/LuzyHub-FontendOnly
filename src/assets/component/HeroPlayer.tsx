@@ -40,7 +40,7 @@ export default function HeroPlayer({
   }, [decodedVideoUrl, isHls]);
 
   return (
-    <div className="relative w-full aspect-video md:aspect-[21/9] lg:h-[85vh] overflow-hidden bg-black">
+    <div className="relative w-full aspect-video overflow-hidden bg-black rounded-3xl shadow-lg border border-white/10">
       {!isPlaying && decodedVideoUrl ? (
         <div className="w-full h-full flex items-center justify-center relative">
           {isHls ? (
@@ -55,7 +55,7 @@ export default function HeroPlayer({
             />
           ) : (
             <video
-              className="w-full h-full object-contain max-h-[85vh]"
+              className="w-full h-full object-contain"
               controls
               autoPlay
               preload="metadata"
@@ -81,8 +81,13 @@ export default function HeroPlayer({
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 lg:p-20 z-10">
+          <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 z-10">
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">{movie.title || movie.name}</h1>
+            {(movie.description) && (
+              <p className="max-w-2xl text-gray-300 text-sm md:text-base lg:text-lg leading-relaxed line-clamp-3 md:line-clamp-4">
+                {movie.description}
+              </p>
+            )}
 
             {decodedVideoUrl ? (
               <button
