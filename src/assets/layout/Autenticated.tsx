@@ -3,7 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Sidebar from "./Sidebar";
 import TopBar from "./Topbar";
 import Footer from "./Footer";
-import SplashCursor from "./css/SpalshCursor";
+import SplashCursor from "./style/SpalshCursor";
 
 interface AuthenticatedProps {
     children: ReactNode;
