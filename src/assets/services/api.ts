@@ -3,6 +3,8 @@ import type { Movie, ApiResponse} from "../types/Movie";
 
 
 const BASE_URL = 'https://foodcash.com.br/sistema/apiv4/api.php';
+const SPORTS_BASE_URL = "/sports/v2/";
+const SPORTS_API_KEY = "84f79cf576a79338d491889b45198610";
 
 type FetchParams = Record<string, string | number>;
 
@@ -24,6 +26,28 @@ const fetchFromApi = async <T>(params: FetchParams): Promise<ApiResponse<T>> => 
   }
 };
 
+const fetchSportsApi = async (params: FetchParams) => {
+  try {
+    const searchParams = new URLSearchParams(params as Record<string, string>);
+    const url = `${SPORTS_BASE_URL}?${searchParams.toString()}`;
+
+    const response = await fetch(url, {
+      headers: {
+        "X-API-KEY": SPORTS_API_KEY
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`Sports API Error: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error("Sports API error:", error);
+    throw error;
+  }
+};
+
 export const api = {
   getTrending: (page = 1) => fetchFromApi<Movie>({ action: 'trending', page }),
   getIndonesianMovies: (page = 1) => fetchFromApi<Movie>({ action: 'indonesian-movies', page }),
@@ -37,4 +61,33 @@ export const api = {
   search: (keyword: string) => fetchFromApi<Movie>({ action: 'search', q: keyword }),
   getDetail: (detailPath: string) => fetchFromApi<Movie>({ action: 'detail', detailPath }),
   getCategory: (category: string, page = 1) => fetchFromApi<Movie>({ action: category, page }),
+};
+
+export const sportsApi = {
+  getLiveMatches: () =>
+    fetchSportsApi({
+      type: "matches",
+      sport: "football",
+      status: "inprogress"
+    }),
+
+  getUpcomingMatches: () =>
+    fetchSportsApi({
+      type: "matches",
+      sport: "football",
+      status: "notstarted"
+    }),
+
+  getFinishedMatches: () =>
+    fetchSportsApi({
+      type: "matches",
+      sport: "football",
+      status: "finished"
+    }),
+
+  getMatchDetail: (id: string) =>
+    fetchSportsApi({
+      type: "detail",
+      id
+    })
 };

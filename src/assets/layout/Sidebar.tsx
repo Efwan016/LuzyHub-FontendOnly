@@ -58,6 +58,13 @@ export default function Sidebar({ isSidebarOpen, isDesktopSidebarOpen = true, cl
             path: "/category/adult-comedy",
             icon: <path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
         },
+        {
+            name: "Live Football",
+            path: "/sports/live",
+            icon: (
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.22 16.96-2.44-4.25-4.25 2.44C5.07 15.74 4.24 13.95 4.06 12h4.91l2.45 4.25 1.8 2.71zm5.25-2.44-4.25-2.44 2.44-4.25h4.91c-.18 1.95-1.01 3.74-2.47 5.15l-1.8 2.71-1.28-1.17zM12 4.06c1.95.18 3.74 1.01 5.15 2.47l-2.71 1.8-4.25-2.44 1.81-1.83zm-5.15 2.47C8.26 5.07 10.05 4.24 12 4.06l1.81 1.83-4.25 2.44-2.71-1.8zm-2.79 5.47h4.91l2.44 4.25-2.44 4.25-1.8-2.71c-1.46-1.41-2.29-3.25-2.47-5.2l-.64-.59z" />
+            )
+        },
     ];
 
     return (
@@ -77,24 +84,23 @@ export default function Sidebar({ isSidebarOpen, isDesktopSidebarOpen = true, cl
 
                 {/* Scrollable Area */}
                 <div className="flex-1 overflow-y-auto px-4 pb-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    
+
                     <div className="mb-8">
                         <div className="text-gray-500 text-xs font-bold mb-4 px-4 uppercase tracking-wider">Menu</div>
                         <div className="flex flex-col gap-1">
                             {menuItems.map((item) => {
-                                const active = item.path === "/" 
-                                    ? location.pathname === "/" 
+                                const active = item.path === "/"
+                                    ? location.pathname === "/"
                                     : location.pathname.startsWith(item.path);
                                 return (
                                     <Link
                                         key={item.name}
                                         to={item.path}
                                         onClick={closeMobileSidebar}
-                                        className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group ${
-                                            active 
-                                                ? "bg-red-600 text-white shadow-lg shadow-red-600/20 font-semibold" 
+                                        className={`flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-200 group ${active
+                                                ? "bg-red-600 text-white shadow-lg shadow-red-600/20 font-semibold"
                                                 : "text-gray-400 hover:bg-[#1F1F1F] hover:text-white"
-                                        }`}
+                                            }`}
                                     >
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className={`transition-transform duration-200 ${active ? "scale-110" : "group-hover:scale-110"}`}>
                                             {item.icon}
