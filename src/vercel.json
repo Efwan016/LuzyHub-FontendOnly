@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/sports",
+      "destination": "https://api.sportsrc.org/v2/"
+    },
+    {
       "source": "/api/api.php",
       "destination": "https://foodcash.com.br/sistema/apiv4/api.php"
     }
