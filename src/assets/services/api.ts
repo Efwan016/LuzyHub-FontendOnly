@@ -2,7 +2,7 @@
 import type { Movie, ApiResponse} from "../types/Movie";
 
 
-const BASE_URL = 'https://foodcash.com.br/sistema/apiv4/api.php';
+const BASE_URL = '/api/api.php';
 const SPORTS_BASE_URL = "/sports/v2/";
 const SPORTS_API_KEY = "84f79cf576a79338d491889b45198610";
 
@@ -10,10 +10,9 @@ type FetchParams = Record<string, string | number>;
 
 const fetchFromApi = async <T>(params: FetchParams): Promise<ApiResponse<T>> => {
   try {
-    const url = new URL(BASE_URL);
-    Object.keys(params).forEach(key => url.searchParams.append(key, String(params[key])));
-
-    const response = await fetch(url.toString());
+    const searchParams = new URLSearchParams(params as Record<string, string>);
+    const url = `${BASE_URL}?${searchParams.toString()}`;
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`API Error: ${response.status}`);
     }

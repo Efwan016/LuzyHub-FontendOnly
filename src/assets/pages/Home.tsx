@@ -128,7 +128,7 @@ export default function Home() {
                   <img
                     src={movie.poster}
                     alt={movie.title}
-                    className={`w-full h-full object-cover transition-transform duration-[20s] ease-linear ${idx === currentIndex ? "scale-110" : "scale-100"}`}
+                    className={`w-full h-full object-cover transition-transform duration-[20000ms] ease-linear ${idx === currentIndex ? "scale-110" : "scale-100"}`}
                   />
                   {/* Gradient Overlays */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-[#141414]" />
