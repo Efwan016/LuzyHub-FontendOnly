@@ -3,7 +3,7 @@ import type { Movie, ApiResponse} from "../types/Movie";
 
 
 const BASE_URL = "https://foodcash.com.br/sistema/apiv4/api.php";
-const SPORTS_BASE_URL = "https://api.sportsrc.org/v2/";
+const SPORTS_BASE_URL = "/api/sports";
 
 type FetchParams = Record<string, string | number>;
 
