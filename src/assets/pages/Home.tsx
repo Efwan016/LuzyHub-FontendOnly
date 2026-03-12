@@ -26,15 +26,39 @@ export default function Home() {
   const trendingNow = useMemo(() => movies.slice(5, 15), [movies]);
 
   useEffect(() => {
-    api.getIndonesianMovies().then((res) => setIndonesiaMovies(res.items || [])).catch(console.error);
-    api.getIndonesianDrama().then((res) => setIndonesianDrama(res.items || [])).catch(console.error);
+    const fetchCategories = async () => {
+      try {
+        const [
+          indonesianMoviesRes,
+          indonesianDramaRes,
+          shortTvRes,
+          kdramaRes,
+          animeRes,
+          westernTvRes,
+          adultComedyRes,
+        ] = await Promise.all([
+          api.getIndonesianMovies(),
+          api.getIndonesianDrama(),
+          api.getShortTV(),
+          api.getKDrama(),
+          api.getAnime(),
+          api.getWesternTV(),
+          api.getAdultComedy(),
+        ]);
 
-    api.getShortTV().then((res) => setShortTv(res.items || [])).catch(console.error);
-    api.getKDrama().then((res) => setKdrama(res.items || [])).catch(console.error);
-    api.getAnime().then((res) => setAnime(res.items || [])).catch(console.error);
-    
-    api.getWesternTV().then((res) => setWesternTv(res.items || [])).catch(console.error);
-    api.getAdultComedy().then((res) => setAdultComedy(res.items || [])).catch(console.error);
+        setIndonesiaMovies(indonesianMoviesRes.items || []);
+        setIndonesianDrama(indonesianDramaRes.items || []);
+        setShortTv(shortTvRes.items || []);
+        setKdrama(kdramaRes.items || []);
+        setAnime(animeRes.items || []);
+        setWesternTv(westernTvRes.items || []);
+        setAdultComedy(adultComedyRes.items || []);
+      } catch (err) {
+        console.error("Failed to fetch movie categories:", err);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
 
