@@ -2,18 +2,16 @@
 import type { Movie, ApiResponse} from "../types/Movie";
 
 
-const BASE_URL = 'https://foodcash.com.br/sistema/apiv4/api.php';
+const BASE_URL = '/api/api.php';
 const SPORTS_BASE_URL = "/api/sports";
-const DRACIN_BASE_URL = "https://api.sansekai.my.id/api/dramabox";
 
 type FetchParams = Record<string, string | number>;
 
 const fetchFromApi = async <T>(params: FetchParams): Promise<ApiResponse<T>> => {
   try {
-    const url = new URL(BASE_URL);
-    Object.keys(params).forEach(key => url.searchParams.append(key, String(params[key])));
-
-    const response = await fetch(url.toString());
+    const searchParams = new URLSearchParams(params as Record<string, string>);
+    const url = `${BASE_URL}?${searchParams.toString()}`;
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`API Error: ${response.status}`);
     }
@@ -44,17 +42,6 @@ const fetchSportsApi = async (params: FetchParams) => {
   }
 };
 
-const fetchFromDracinApi = async (path: string) => {
-
-  const url = `${DRACIN_BASE_URL}/${path}`;
-  const res = await fetch(url);
-
-  if (!res.ok) {
-    throw new Error(`Dracin API Error: ${res.status}`);
-  }
-
-  return res.json();
-};
 
 export const api = {
   getTrending: (page = 1) => fetchFromApi<Movie>({ action: 'trending', page }),
@@ -98,28 +85,4 @@ export const sportsApi = {
       type: "detail",
       id
     })
-};
-
-export const dracinApi = {
-
-  trending: () =>
-    fetchFromDracinApi("trending"),
-
-  latest: () =>
-    fetchFromDracinApi("latest"),
-
-  foryou: () =>
-    fetchFromDracinApi("foryou"),
-
-  vip: () =>
-    fetchFromDracinApi("vip"),
-
-  dubindo: () =>
-    fetchFromDracinApi("dubindo"),
-
-  random: () =>
-    fetchFromDracinApi("randomdrama"),
-
-  populerSearch: () =>
-    fetchFromDracinApi("populersearch"),
 };
