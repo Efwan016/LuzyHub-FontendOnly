@@ -5,6 +5,7 @@ import Search from "./assets/pages/Search";
 import MovieDetail from "./assets/pages/MovieDetail";
 import Category from "./assets/pages/Category";
 import LiveFootball from "./assets/pages/LiveFootball";
+import MatchDetail from "./assets/services/MatchDetail";
 
 
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/movie/:slug" element={<MovieDetail />} />
         <Route path="/category/:slug" element={<Category />} />
         <Route path="/sports/live" element={<LiveFootball />} />
+        <Route path="/sports/match/:id" element={<MatchDetail />} />
       </Routes>
       <Analytics />
     </>
