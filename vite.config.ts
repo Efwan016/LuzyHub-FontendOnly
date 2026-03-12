@@ -13,13 +13,6 @@ export default defineConfig({
         target: "https://foodcash.com.br/sistema/apiv4",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ""),
-      },
-
-      // API SPORTSRC
-      "/sports": {
-        target: "https://api.sportsrc.org",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/sports/, ""),
       }
     },
   },

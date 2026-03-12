@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/api.php",
+      "destination": "https://foodcash.com.br/sistema/apiv4/api.php"
+    },
+  ]
+}
