@@ -1,9 +1,12 @@
 
-import type { Movie, ApiResponse} from "../types/Movie";
+import type { Movie, ApiResponse } from "../types/Movie";
 
 
 const BASE_URL = "https://foodcash.com.br/sistema/apiv4/api.php";
-const SPORTS_BASE_URL = "/api/sports";
+const SPORTS_BASE_URL = import.meta.env.DEV
+  ? "/api/sports" // pakai proxy Vite
+  : "https://api.sportsrc.org/v2"; // langsung ke API
+;
 
 type FetchParams = Record<string, string | number>;
 
@@ -29,7 +32,11 @@ const fetchSportsApi = async (params: FetchParams) => {
     const searchParams = new URLSearchParams(params as Record<string, string>);
     const url = `${SPORTS_BASE_URL}?${searchParams.toString()}`;
 
-    const response = await fetch(url);
+    const response = await fetch(url, {
+      headers: {
+        "X-API-KEY": "84f79cf576a79338d491889b45198610"
+      }
+    });;
 
     if (!response.ok) {
       throw new Error(`Sports API Error: ${response.status}`);
