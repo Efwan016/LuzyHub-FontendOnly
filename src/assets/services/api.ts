@@ -34,8 +34,8 @@ const fetchSportsApi = async (params: FetchParams) => {
 
     const response = await fetch(url, {
       headers: {
-        "X-API-KEY": "84f79cf576a79338d491889b45198610"
-      }
+  "X-API-KEY": import.meta.env.VITE_API_KEY
+}
     });;
 
     if (!response.ok) {
