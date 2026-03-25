@@ -3,10 +3,7 @@ import type { Movie, ApiResponse } from "../types/Movie";
 
 
 const BASE_URL = "https://foodcash.com.br/sistema/apiv4/api.php";
-const SPORTS_BASE_URL = import.meta.env.DEV
-  ? "/api/sports" // pakai proxy Vite
-  : "https://api.sportsrc.org/v2"; // langsung ke API
-;
+const SPORTS_BASE_URL = "/api/sports";
 
 type FetchParams = Record<string, string | number>;
 

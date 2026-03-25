@@ -16,7 +16,7 @@ export default async function handler(
   try {
     const response = await fetch(url.toString(), {
       headers: {
-        "X-API-KEY": process.env.SPORTS_API_KEY as string,
+        "X-API-KEY": "84f79cf576a79338d491889b45198610",
       },
     });
 
