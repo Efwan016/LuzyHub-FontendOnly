@@ -91,9 +91,9 @@ export default function LiveFootball() {
                         <div key={league.id || Math.random().toString()} className="rounded-xl overflow-hidden">
                             <div className="flex items-center gap-3 mb-4 px-2 border-b border-[#1F1F1F] pb-2">
                                 {league.logo && (
-                                    <img 
-                                        src={league.logo} 
-                                        alt={league.name} 
+                                    <img
+                                        src={league.logo}
+                                        alt={league.name}
                                         className="w-8 h-8 object-contain bg-white rounded-full p-1"
                                         onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                                     />
@@ -110,8 +110,8 @@ export default function LiveFootball() {
                                     const date = new Date(match.timestamp);
                                     const time = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-                                    const homeLogo = match.home_team_logo || `https://ui-avatars.com/api/?name=${encodeURIComponent(home)}&background=333&color=fff`;
-                                    const awayLogo = match.away_team_logo || `https://ui-avatars.com/api/?name=${encodeURIComponent(away)}&background=333&color=fff`;
+                                    const homeLogo = match.home_team_logo;
+                                    const awayLogo = match.away_team_logo;
 
                                     return (
                                         <Link
@@ -121,12 +121,13 @@ export default function LiveFootball() {
                                         >
 
                                             <div className="w-1/3 font-semibold flex items-center gap-3">
-                                                <img
-                                                    src={homeLogo}
-                                                    alt={home}
-                                                    className="w-8 h-8 rounded-full object-cover bg-gray-800"
-                                                    onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(home)}&background=333&color=fff`; }}
-                                                />
+                                                {homeLogo && (
+                                                    <img
+                                                        src={homeLogo}
+                                                        alt={home}
+                                                        className="w-8 h-8 rounded-full object-cover bg-gray-800"
+                                                    />
+                                                )}
                                                 <span className="truncate hidden sm:inline">{home}</span>
                                                 <span className="truncate sm:hidden">{home.substring(0, 3).toUpperCase()}</span>
                                             </div>
@@ -144,12 +145,13 @@ export default function LiveFootball() {
                                             <div className="w-1/3 text-right font-semibold flex items-center justify-end gap-3">
                                                 <span className="truncate hidden sm:inline">{away}</span>
                                                 <span className="truncate sm:hidden">{away.substring(0, 3).toUpperCase()}</span>
-                                                <img
-                                                    src={awayLogo}
-                                                    alt={away}
-                                                    className="w-8 h-8 rounded-full object-cover bg-gray-800"
-                                                    onError={(e) => { (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${encodeURIComponent(away)}&background=333&color=fff`; }}
-                                                />
+                                                {awayLogo && (
+                                                    <img
+                                                        src={awayLogo}
+                                                        alt={away}
+                                                        className="w-8 h-8 rounded-full object-cover bg-gray-800"
+                                                    />
+                                                )}
                                             </div>
 
                                         </Link>
@@ -158,9 +160,6 @@ export default function LiveFootball() {
                             </div>
                         </div>
                     ))}
-                </div>
-                <div className="mt-6 text-xl  font-bold text-center text-gray-300">
-                    COMING SOON: Click on a match to see live details and updates!
                 </div>
             </div>
         </Autendticated>
