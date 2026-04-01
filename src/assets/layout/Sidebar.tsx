@@ -49,7 +49,7 @@ export default function Sidebar({ isSidebarOpen, isDesktopSidebarOpen = true, cl
             icon: <path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z" />
         },
         {
-            name: "Western-TV",
+            name: "Movie",
             path: "/category/western-tv",
             icon: <path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z" />
         },

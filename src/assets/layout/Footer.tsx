@@ -27,10 +27,9 @@ export default function Footer() {
                         <ul className="space-y-2">
                             <li><Link to="/category/kdrama" className="hover:text-white transition-colors">K-Drama</Link></li>
                             <li><Link to="/category/anime" className="hover:text-white transition-colors">Anime</Link></li>
-                            <li><Link to="/category/indonesian-movies" className="hover:text-white transition-colors">Indonesia Movie</Link></li>
-                            <li><Link to="/category/indonesian-drama" className="hover:text-white transition-colors">Indonesia Drama</Link></li>
                             <li><Link to="/category/short-tv" className="hover:text-white transition-colors">Short TV</Link></li>
-                            <li><Link to="/category/western-tv" className="hover:text-white transition-colors">Western TV</Link></li>
+                            <li><Link to="/sports/match/:id" className="hover:text-white transition-colors">Live Football</Link></li>
+                            <li><Link to="/category/western-tv" className="hover:text-white transition-colors">Movie</Link></li>
                         </ul>
                     </div>
 

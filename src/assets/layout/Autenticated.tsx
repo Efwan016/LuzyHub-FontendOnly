@@ -4,6 +4,7 @@ import Sidebar from "./Sidebar";
 import TopBar from "./Topbar";
 import Footer from "./Footer";
 import SplashCursor from "./style/SpalshCursor";
+import Donate from "./Donate";
 
 interface AuthenticatedProps {
     children: ReactNode;
@@ -67,7 +68,7 @@ export default function Authenticated({ children }: AuthenticatedProps) {
                 <Footer />
             </div>
 
-
+            <Donate />
             <SplashCursor />
             <Analytics />
         </div>
